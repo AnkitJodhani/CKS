@@ -1,0 +1,28 @@
+---
+# Allow backend pod to accept traffic only from frontend pod
+# from frontend namespace at only port 3000
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: example-a
+  namespace: backend
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: ns
+          operator: In
+          values: ["frontend"]
+      podSelector:
+        matchLabels:
+          app: frontend
+    ports:
+    - protocol: TCP
+      port: 3000
+

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-d
+  name: nginx-d
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-d
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx-d
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+      securityContext:
+        readOnlyRootFilesystem: true
+
+
+
+
