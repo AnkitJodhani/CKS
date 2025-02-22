@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-d
+  name: nginx-d
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-d
+  template:
+    metadata:
+      labels:
+        app: nginx-d
+    spec:
+      hostPID: true  # 🚫 Not allowd in th baseline policy
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        securityContext:
+          privileged: true  # 🚫 Not allowd in th baseline policy
+          allowPrivilegeEscalation: true
