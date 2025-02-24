@@ -30,7 +30,7 @@ cilium upgrade --version 1.17.0    --set encryption.enabled=true    --set encryp
 
 # Check the status
 cilium encryption status
-kubectl -n kube-system exec -ti ds/cilium -- cilium encrypt status
+kubectl -n kube-system exec -it ds/cilium -- cilium encrypt status
 
 
 ```

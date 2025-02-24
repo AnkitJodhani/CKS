@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: first-job
+spec:
+  completions: 5 # Number of successful Pods to complete jobs or task
+  parallelism: 2 # Number of pods at a time, default 1, and if set to "0" then the Job is effectively paused until it is increased
+  backoffLimit: 10 # Limit of retries before marking job as Failed
+  completionMode: Indexed # or NonIndexed
+  backoffLimitPerIndex: 2  # maximal number of failures per index
+  maxFailedIndexes: 5      # maximal number of failed indexes before terminating the Job execution
+  template:
+    spec:
+      containers:
+      - name: random
+        image: kodekloud/random-error
+      restartPolicy: Never # OnFailure
+
