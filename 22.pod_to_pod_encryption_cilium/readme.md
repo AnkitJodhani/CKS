@@ -15,7 +15,7 @@
 
 # Check the encryption status
 cilium encryption status
-kubectl -n kube-system exec -ti ds/cilium -- cilium encrypt status
+kubectl -n kube-system exec -it ds/cilium -- cilium encrypt status
 
 # Lets do it
 
