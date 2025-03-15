@@ -19,6 +19,22 @@
 - Node perpose: Run kubernetes not any other s/w
 - Node Recycling: Node should be ephemeral
 
+## To see all the process running in the system
+```bash
+ps -aux
+
+ps -ef
+
+# Get the process which is dealing with /dev/mem file
+ps -aux | grep -i "/dev/mem"
+
+# Lets see which container or process accessing it?
+pstree --help
+
+pstree -tphs <PROCESS_ID>
+
+
+```
 
 ## See Open port
 ```bash
